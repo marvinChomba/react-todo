@@ -23,9 +23,25 @@ class App extends Component {
       })
       event.target.elements.todo.value = ""
   }
+  deleteTodoHandler = (id) => {
+    let todo = this.state.todos.findIndex(t => {
+      return t.id = id
+    })
+    let stateClone = [...this.state.todos]
+    stateClone.splice(todo,1)
+    this.setState({
+      todos: stateClone
+    })
+  }
+  editTodoHandler = (event,id) => {
+    let todo = this.state.todos.findIndex(t => {
+      return t.id = id
+    })
+    new_todo = event.value.target
+  }
   render() {
     let all_todos = this.state.todos.map(todo => {
-      return <DisplayTodo title = {todo.title} key={todo.id} />
+      return <DisplayTodo title = {todo.title} key={todo.id} remove = {() => this.deleteTodoHandler(todo.id)}/>
     })
     return (
       <div className="App">

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import DisplayTodo from "../components/Display"
 import AddTodo from "../components/Add"
-
+import AllTodos from "../components/AllTodos"
 class App extends Component {
   state = {
     todos: [
@@ -32,13 +32,10 @@ class App extends Component {
   }
   
   render() {
-    let all_todos = this.state.todos.map((todo,i) => {
-      return <DisplayTodo title = {todo.title} key={todo.id} remove = {this.deleteTodoHandler.bind(this,i)}/>
-    })
     return (
       <div className="App">
         <AddTodo addTodo = {(event) =>this.addTodoHandler(event)}/>
-        {all_todos}
+        <AllTodos todos = {this.state.todos} deleteTodoHandler={this.deleteTodoHandler}/>
       </div>
     );
   }

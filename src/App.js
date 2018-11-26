@@ -6,10 +6,10 @@ import AddTodo from "./Add"
 class App extends Component {
   state = {
     todos: [
-      {id: 1,title: "Eat"},
-      {id: 2,title: "Sleep"},
-      {id: 3,title: "Code"},
-      {id: 4,title: "Repeat"}
+      {id: 11234,title: "Eat"},
+      {id: 234234,title: "Sleep"},
+      {id: 334234,title: "Code"},
+      {id: 4234234,title: "Repeat"}
     ]
   }
   addTodoHandler = (event) => {
@@ -23,25 +23,16 @@ class App extends Component {
       })
       event.target.elements.todo.value = ""
   }
-  deleteTodoHandler = (id) => {
-    let todo = this.state.todos.findIndex(t => {
-      return t.id = id
-    })
+  deleteTodoHandler = (index) => {
     let stateClone = [...this.state.todos]
-    stateClone.splice(todo,1)
+    stateClone.splice(index,1)
     this.setState({
       todos: stateClone
     })
   }
-  editTodoHandler = (event,id) => {
-    let todo = this.state.todos.findIndex(t => {
-      return t.id = id
-    })
-    new_todo = event.value.target
-  }
   render() {
-    let all_todos = this.state.todos.map(todo => {
-      return <DisplayTodo title = {todo.title} key={todo.id} remove = {() => this.deleteTodoHandler(todo.id)}/>
+    let all_todos = this.state.todos.map((todo,i) => {
+      return <DisplayTodo title = {todo.title} key={todo.id} remove = {this.deleteTodoHandler.bind(this,i)}/>
     })
     return (
       <div className="App">

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import DisplayTodo from "./Display.js"
-import AddTodo from "./Add"
+import DisplayTodo from "../components/Display"
+import AddTodo from "../components/Add"
 
 class App extends Component {
   state = {
@@ -30,6 +30,7 @@ class App extends Component {
       todos: stateClone
     })
   }
+  
   render() {
     let all_todos = this.state.todos.map((todo,i) => {
       return <DisplayTodo title = {todo.title} key={todo.id} remove = {this.deleteTodoHandler.bind(this,i)}/>
